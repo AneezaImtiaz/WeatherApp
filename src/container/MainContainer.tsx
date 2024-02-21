@@ -30,7 +30,9 @@ const MainContainer: React.FC<MainContainerProps> = () => {
                 title={'No Connection'}
                 message='Connection to the server failed. Please try again shortly.'
                 button={'Try Again'}
-                onClose={() => { setShowErrorModal(false); weatherInfo(city); }}
+                closeButton={'Close'}
+                onClose={() => { setShowErrorModal(false); }}
+                onButtonClick={() => { setShowErrorModal(false); weatherInfo(city); }}
             />
         );
     };
