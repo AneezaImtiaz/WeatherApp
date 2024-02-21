@@ -48,9 +48,6 @@ const MainContainer: React.FC<MainContainerProps> = () => {
                 <WeatherInfoCard item={weatherData} />
 
             )}
-            <footer className="App-footer">
-                <p>&copy; 2024 Weather App</p>
-            </footer>
         </div>
     );
 };

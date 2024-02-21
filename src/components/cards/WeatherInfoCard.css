@@ -6,11 +6,19 @@
   }
 
   .image-container {
-      width: 700px;
+      width: '100%';
       height: 300px;
       overflow: hidden;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .content {
+      flex-direction: row;
+      margin-top: 15px;
+      display: flex;
+      margin-bottom: 15px;
+      justify-content: space-between;
   }
 
   .image {
@@ -21,10 +29,28 @@
 
   .container h2 {
       font-size: 24px;
-      margin-bottom: 15px;
+      width: 80%;
   }
 
   .container p {
       font-size: 18px;
       margin-bottom: 10px;
+  }
+
+  .icon-container {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-self: center;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #a0c9d7;
+  }
+
+  .icon {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
   }
