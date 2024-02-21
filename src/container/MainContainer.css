@@ -1,0 +1,19 @@
+.App {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dce0e8;
+  width: 100%;
+  height: 100vh;
+}
+.Search {
+  margin-top: 20px;
+}
+.App-footer {
+  background-color: #282c34;
+  position: absolute;
+  bottom: 10px;
+  color: white;
+  padding: 8px;
+  border-radius: 12px;
+}
