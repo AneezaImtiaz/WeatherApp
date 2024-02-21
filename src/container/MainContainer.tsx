@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Loader, Header, MessageDialog } from '../components';
+import { Search, Loader, Header, MessageDialog, WeatherInfoCard } from '../components';
 import { fetchWeatherData } from '../api/WeatherApi';
 import './MainContainer.css';
 
@@ -7,6 +7,7 @@ type MainContainerProps = {};
 
 const MainContainer: React.FC<MainContainerProps> = () => {
     const [city, setCity] = useState('');
+    const [weatherData, setWeatherData] = useState<any>();
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [loader, setLoader] = useState(false);
 
@@ -15,6 +16,7 @@ const MainContainer: React.FC<MainContainerProps> = () => {
             setLoader(true);
             setCity(city);
             const data = await fetchWeatherData(city);
+            setWeatherData(data);
         } catch (e) {
             setShowErrorModal(true);
         } finally {
@@ -42,8 +44,10 @@ const MainContainer: React.FC<MainContainerProps> = () => {
             {showErrorModal && renderErrorConnectionModal()}
             {loader ? (
                 <Loader />
-            ) : (
-                null)}
+            ) : (weatherData &&
+                <WeatherInfoCard item={weatherData} />
+
+            )}
             <footer className="App-footer">
                 <p>&copy; 2024 Weather App</p>
             </footer>

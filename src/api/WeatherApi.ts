@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_KEY = 'QVWDCPX8BWD8NHD4MELTC7R6N';
+const UNSPLASH_ACCESS_KEY = 'h3whuJcmsrQqwqq_9VKyLhdqWdLkPLRj3Nc655d_TCk';
 
 export async function fetchWeatherData(
   cityName: string,
@@ -11,7 +12,12 @@ export async function fetchWeatherData(
       );
   // Check if the request was successful
   if (response?.status === 200) {
-    return response?.data;
+    const imageResponse = await axios.get(`https://api.unsplash.com/photos/random?query=city&orientation=landscape&client_id=${UNSPLASH_ACCESS_KEY}&count=1&lat=${response?.data?.latitude}&lng=${response?.data?.longitude}`);
+    if (imageResponse.status === 200 && imageResponse.data.length > 0) {
+      return {...response?.data, imageUrl : imageResponse?.data[0]?.urls?.regular};
+    } else {
+      throw new Error('Failed to fetch city image');
+    }
   } else {
     throw new Error('Failed to fetch weather data');
   }
