@@ -1,8 +1,9 @@
   .container {
-      background-color: #fff;
+      background-color: #dce0e8;   
       padding: 20px;
       align-self: center;
       border-radius: 8px;
+      margin: 20px;
   }
 
   .image-container {

@@ -3,7 +3,7 @@ import './WeatherInfoCard.css';
 import heartIcon from '../../resources/icons/heart.png';
 import heartFilledIcon from '../../resources/icons/heart_filled.png';
 
-type WeatherItem = {
+export type WeatherItem = {
     imageUrl: string;
     resolvedAddress: string;
     description: string;
@@ -16,9 +16,10 @@ type WeatherItem = {
 
 type WeatherInfoCardProps = {
     item: WeatherItem;
+    subscribedIconClick?: void | (() => void);
 };
 
-const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item }) => {
+const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item,  subscribedIconClick = () => null, }) => {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [favourites, setFavourites] = useState<WeatherItem[]>([]);
 
@@ -31,6 +32,7 @@ const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item }) => {
             setIsSubscribed(true);
         } else {
             localStorage.setItem('favourites', JSON.stringify(favourites?.filter(element => element?.resolvedAddress !== item?.resolvedAddress),));
+            subscribedIconClick();
             setIsSubscribed(false);
         }
     };

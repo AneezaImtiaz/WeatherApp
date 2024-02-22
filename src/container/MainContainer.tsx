@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Loader, Header, MessageDialog, WeatherInfoCard } from '../components';
+import { Search, Loader, MessageDialog, WeatherInfoCard } from '../components';
 import { fetchWeatherData } from '../api/WeatherApi';
 import './MainContainer.css';
 
@@ -39,9 +39,8 @@ const MainContainer: React.FC<MainContainerProps> = () => {
 
     return (
         <div className="App">
-            <Header />
             <div className="Search">
-                <Search buttonClick={(city) => weatherInfo(city)} />
+                <Search buttonClick={(city) => weatherInfo(city)} placeholder={'Search city here...'} />
             </div>
             {showErrorModal && renderErrorConnectionModal()}
             {loader ? (
