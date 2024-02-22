@@ -3,6 +3,11 @@ export const NO_SAVED_MODAL = {
   description: 'Like an item you see? Save them here to your favourites',
 } as const;
 
+export const EMPTY_SEARCH_DIALOG = {
+  title: 'Note',
+  description: 'You haven‘t entered any value to be searched on.',
+} as const;
+
 export const ERROR_DIALOG = {
   title: 'No Connection',
   description: 'Connection to the server failed. Please try again shortly.',

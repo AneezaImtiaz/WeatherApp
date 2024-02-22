@@ -9,7 +9,7 @@ type MainContainerProps = {};
 const MainContainer: React.FC<MainContainerProps> = () => {
     const [city, setCity] = useState('');
     const [weatherData, setWeatherData] = useState<any>();
-    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showErrorDialog, setShowErrorDialog] = useState(false);
     const [loader, setLoader] = useState(false);
 
     const weatherInfo = async (city: string) => {
@@ -19,21 +19,21 @@ const MainContainer: React.FC<MainContainerProps> = () => {
             const data = await fetchWeatherData(city);
             setWeatherData(data);
         } catch (e) {
-            setShowErrorModal(true);
+            setShowErrorDialog(true);
         } finally {
             setLoader(false);
         }
     };
 
-    const renderErrorConnectionModal = () => {
+    const renderErrorConnectionDialog= () => {
         return (
             <MessageDialog
                 title={ERROR_DIALOG.title}
                 description={ERROR_DIALOG.description}
                 button={TRY_AGAIN}
                 closeButton={CLOSE}
-                onClose={() => { setShowErrorModal(false); }}
-                onButtonClick={() => { setShowErrorModal(false); weatherInfo(city); }}
+                onClose={() => { setShowErrorDialog(false); }}
+                onButtonClick={() => { setShowErrorDialog(false); weatherInfo(city); }}
             />
         );
     };
@@ -43,7 +43,7 @@ const MainContainer: React.FC<MainContainerProps> = () => {
             <div className="Search">
                 <Search buttonClick={(city) => weatherInfo(city)} placeholder={`${SEARCH} city here...`} />
             </div>
-            {showErrorModal && renderErrorConnectionModal()}
+            {showErrorDialog && renderErrorConnectionDialog()}
             {loader ? (
                 <Loader />
             ) : (weatherData &&

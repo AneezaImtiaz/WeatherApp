@@ -6,17 +6,17 @@ type MessageDialogProps = {
     button: string;
     onButtonClick: (() => void); 
     description: string;
-    closeButton: string;
-    onClose: (() => void);
+    closeButton?: string;
+    onClose?: (() => void);
   };
   
-  const MessageDialog: React.FC<MessageDialogProps> = ({ title, description, button, closeButton = 'Close', onClose = () => null, onButtonClick = () => null,}) => {
+  const MessageDialog: React.FC<MessageDialogProps> = ({ title, description, button, closeButton, onClose = () => null, onButtonClick = () => null,}) => {
   return (
     <div className="alert-overlay">
       <div className="alert-content">
         <h2>{title}</h2>
         <p>{description}</p>
-        <button onClick={onClose}>{closeButton}</button>
+        {closeButton && <button onClick={onClose}>{closeButton}</button> }
         <button onClick={onButtonClick}>{button}</button>
       </div>
     </div>

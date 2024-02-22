@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {SEARCH} from '../../utils/Constants';
+import {SEARCH, EMPTY_SEARCH_DIALOG, CLOSE} from '../../utils/Constants';
+import { MessageDialog } from '../../components';
 
 export type SearchProps = {
   buttonClick: ((value: string) => void);
@@ -8,11 +9,24 @@ export type SearchProps = {
 
 const Search: React.FC<SearchProps> = ({ buttonClick = () => null, placeholder = `${SEARCH}...` }) => {
   const [city, setCity] = useState('');
+  const [showEmptyDialog, setShowEmptyDialog] = useState(false);
+
+  const renderEmptyFieldDialog = () => {
+    return (
+        <MessageDialog
+            title={EMPTY_SEARCH_DIALOG.title}
+            description={EMPTY_SEARCH_DIALOG.description}
+            button={CLOSE}
+            onButtonClick={() => { setShowEmptyDialog(false) }}
+        />
+    );
+};
 
   return (
     <div>
       <input type="text" placeholder={placeholder} value={city} onChange={(e) => setCity(e.target.value)} />
-      <button onClick={() => buttonClick(city)}>{SEARCH}</button>
+      <button onClick={() => !city ? setShowEmptyDialog(true) : buttonClick(city)}>{SEARCH}</button>
+      {showEmptyDialog && renderEmptyFieldDialog()}
     </div>
   );
 };
