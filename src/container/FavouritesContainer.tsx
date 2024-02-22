@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { WeatherInfoCard } from '../components';
+import { WeatherInfoCard, NoDataModal } from '../components';
 import { WeatherItem } from '../components/cards/WeatherInfoCard';
+import {NO_SAVED_MODAL} from '../utils/Constants';
 import FlatList from 'flatlist-react';
 import './MainContainer.css';
 
@@ -17,6 +18,15 @@ export const FavouritesContainer: React.FC<FavouritesContainerProps> = () => {
         }
     }, []);
 
+    const renderNoData = () => {
+        return (
+          <NoDataModal
+            title={NO_SAVED_MODAL.title}
+            description={NO_SAVED_MODAL.description}
+          />
+        );
+      };
+
     return (
         <div>
             <FlatList
@@ -27,6 +37,7 @@ export const FavouritesContainer: React.FC<FavouritesContainerProps> = () => {
                     )
                 } />}
                 keyExtractor={(item: WeatherItem) => JSON.stringify(item.resolvedAddress)}
+                renderWhenEmpty={renderNoData}
             />
         </div>
     );

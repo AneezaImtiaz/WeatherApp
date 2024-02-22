@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './WeatherInfoCard.css';
 import heartIcon from '../../resources/icons/heart.png';
 import heartFilledIcon from '../../resources/icons/heart_filled.png';
+import { WEATHER_INFO } from '../../utils/Constants';
 
 export type WeatherItem = {
     imageUrl: string;
@@ -19,7 +20,7 @@ type WeatherInfoCardProps = {
     subscribedIconClick?: void | (() => void);
 };
 
-const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item,  subscribedIconClick = () => null, }) => {
+const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item, subscribedIconClick = () => null, }) => {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [favourites, setFavourites] = useState<WeatherItem[]>([]);
 
@@ -61,10 +62,10 @@ const WeatherInfoCard: React.FC<WeatherInfoCardProps> = ({ item,  subscribedIcon
                     <img src={isSubscribed ? heartFilledIcon : heartIcon} alt="heartIcon" className="icon" />
                 </div>
             </div>
-            <p>Temperature: {item?.currentConditions.temp}&deg;{ }</p>
-            <p>Conditions: {item?.description}</p>
-            <p>Humidity: {item?.currentConditions?.humidity}%</p>
-            <p>Wind: {item?.currentConditions?.windspeed}</p>
+            <p>{`${WEATHER_INFO.temperature}: `}{item?.currentConditions.temp}&deg;{ }</p>
+            <p>{`${WEATHER_INFO.conditions}: `}{item?.description}</p>
+            <p>{`${WEATHER_INFO.humidity}: `}{item?.currentConditions?.humidity}%</p>
+            <p>{`${WEATHER_INFO.wind}: `}{item?.currentConditions?.windspeed}</p>
         </div>
     );
 };

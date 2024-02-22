@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Loader, MessageDialog, WeatherInfoCard } from '../components';
 import { fetchWeatherData } from '../api/WeatherApi';
+import {ERROR_DIALOG, CLOSE, TRY_AGAIN, SEARCH} from '../utils/Constants';
 import './MainContainer.css';
 
 type MainContainerProps = {};
@@ -27,10 +28,10 @@ const MainContainer: React.FC<MainContainerProps> = () => {
     const renderErrorConnectionModal = () => {
         return (
             <MessageDialog
-                title={'No Connection'}
-                message='Connection to the server failed. Please try again shortly.'
-                button={'Try Again'}
-                closeButton={'Close'}
+                title={ERROR_DIALOG.title}
+                description={ERROR_DIALOG.description}
+                button={TRY_AGAIN}
+                closeButton={CLOSE}
                 onClose={() => { setShowErrorModal(false); }}
                 onButtonClick={() => { setShowErrorModal(false); weatherInfo(city); }}
             />
@@ -40,7 +41,7 @@ const MainContainer: React.FC<MainContainerProps> = () => {
     return (
         <div className="App">
             <div className="Search">
-                <Search buttonClick={(city) => weatherInfo(city)} placeholder={'Search city here...'} />
+                <Search buttonClick={(city) => weatherInfo(city)} placeholder={`${SEARCH} city here...`} />
             </div>
             {showErrorModal && renderErrorConnectionModal()}
             {loader ? (

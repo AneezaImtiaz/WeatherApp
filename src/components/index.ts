@@ -3,3 +3,4 @@ export * from './layouts';
 export * from './dialogs';
 export * from './overlays';
 export * from './cards';
+export * from './modals';
