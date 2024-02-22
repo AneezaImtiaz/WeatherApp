@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { WeatherInfoCard, NoDataModal } from '../components';
+import { WeatherInfoCard, NoDataFoundModal } from '../components';
 import { WeatherItem } from '../components/cards/WeatherInfoCard';
 import {NO_SAVED_MODAL} from '../utils/Constants';
 import FlatList from 'flatlist-react';
@@ -20,7 +20,7 @@ export const FavouritesContainer: React.FC<FavouritesContainerProps> = () => {
 
     const renderNoData = () => {
         return (
-          <NoDataModal
+          <NoDataFoundModal
             title={NO_SAVED_MODAL.title}
             description={NO_SAVED_MODAL.description}
           />

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, } from 'react-router-dom';
 import { MainContainer } from './container';
 import { FavouritesContainer } from './container';
 import { Header } from './components';
+import './App.css';
 
 const App: React.FC = () => {
   return (

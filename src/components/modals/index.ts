@@ -1,1 +1,1 @@
-export {default as NoDataModal} from './NoDataModal';
+export {default as NoDataFoundModal} from './NoDataModal';
